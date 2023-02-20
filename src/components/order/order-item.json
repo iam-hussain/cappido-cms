@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_common_order_items",
+  "info": {
+    "displayName": "Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "default": 0,
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1
+    },
+    "total": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+}

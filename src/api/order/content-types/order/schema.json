@@ -1,0 +1,125 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "mode": {
+      "type": "enumeration",
+      "enum": [
+        "express",
+        "dining",
+        "takeaway",
+        "delivery"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "dining",
+        "preparing",
+        "pickup",
+        "transport",
+        "completed"
+      ]
+    },
+    "isPaid": {
+      "type": "boolean",
+      "default": false
+    },
+    "isBilled": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPrinted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isKOTPrinted": {
+      "type": "boolean",
+      "default": false
+    },
+    "billedAt": {
+      "type": "datetime",
+      "required": false
+    },
+    "paymentType": {
+      "type": "enumeration",
+      "enum": [
+        "cash",
+        "card",
+        "UPI",
+        "wallet",
+        "credit"
+      ]
+    },
+    "paidAt": {
+      "type": "datetime"
+    },
+    "discountPercentage": {
+      "type": "integer",
+      "max": 100,
+      "min": 0,
+      "default": 0
+    },
+    "discountPrice": {
+      "type": "decimal",
+      "default": 0
+    },
+    "packingCharge": {
+      "type": "decimal",
+      "default": 0
+    },
+    "subTotal": {
+      "type": "decimal",
+      "default": 0
+    },
+    "grandTotal": {
+      "type": "decimal",
+      "default": 0
+    },
+    "cashPaid": {
+      "type": "decimal",
+      "default": 0
+    },
+    "changeReturned": {
+      "type": "decimal",
+      "default": 0
+    },
+    "note": {
+      "type": "text",
+      "unique": false
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order.order-item"
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "orders"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "order"
+    },
+    "consumer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::consumer.consumer",
+      "inversedBy": "order"
+    }
+  }
+}
